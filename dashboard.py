@@ -65,41 +65,6 @@ with kpi4:
     """, unsafe_allow_html=True)
 
 st.markdown("---")
-
-# Graphiques
-with st.container():
-    col1, col2 = st.columns(2)
-
-    # Bar Chart - Profit par produit avec couleurs différentes
-    with col1:
-        st.subheader("Profit par produit")
-        product_profit = df_filtered.groupby("product_id")["profit_margin"].sum().reset_index()
-        fig1 = px.bar(product_profit, x="product_id", y="profit_margin", 
-                      title="Profit par produit",
-                      color="product_id", 
-                      color_discrete_sequence=px.colors.qualitative.Set2)  # Palette de couleurs vives
-        st.plotly_chart(fig1, use_container_width=True)
-
-    # Line Chart - Évolution des revenus dans le temps
-    with col2:
-        st.subheader("Évolution des revenus")
-        fig2 = px.line(df_filtered, x="sale_date", y="revenue", 
-                       title="Revenu par date", 
-                       labels={"sale_date": "Date", "revenue": "Revenu"}, 
-                       line_shape="linear", 
-                       color_discrete_sequence=["#0A75AD"])  # Couleur de la ligne
-        st.plotly_chart(fig2, use_container_width=True)
-
-# # Graphique supplémentaire
-# st.subheader("Répartition des revenus par produit (Pie Chart)")
-# fig3 = px.pie(df_filtered.groupby("product_id")["revenue"].sum().reset_index(), 
-#               names="product_id", 
-#               values="revenue", 
-#               title="Répartition des revenus", 
-#               color_discrete_sequence=px.colors.sequential.Plasma)  # Palette Plasma
-# st.plotly_chart(fig3, use_container_width=True)
-
-st.markdown("---")
 st.header("📊 Analyses dynamiques en temps réel")
 
 real_time_col1, real_time_col2 = st.columns(2)
@@ -160,3 +125,38 @@ with real_time_col2:
     )
 
     st.plotly_chart(fig_clients, use_container_width=True)
+
+st.markdown("---")
+
+# Graphiques
+with st.container():
+    col1, col2 = st.columns(2)
+
+    # Bar Chart - Profit par produit avec couleurs différentes
+    with col1:
+        st.subheader("Profit par produit")
+        product_profit = df_filtered.groupby("product_id")["profit_margin"].sum().reset_index()
+        fig1 = px.bar(product_profit, x="product_id", y="profit_margin", 
+                      title="Profit par produit",
+                      color="product_id", 
+                      color_discrete_sequence=px.colors.qualitative.Set2)  # Palette de couleurs vives
+        st.plotly_chart(fig1, use_container_width=True)
+
+    # Line Chart - Évolution des revenus dans le temps
+    with col2:
+        st.subheader("Évolution des revenus")
+        fig2 = px.line(df_filtered, x="sale_date", y="revenue", 
+                       title="Revenu par date", 
+                       labels={"sale_date": "Date", "revenue": "Revenu"}, 
+                       line_shape="linear", 
+                       color_discrete_sequence=["#0A75AD"])  # Couleur de la ligne
+        st.plotly_chart(fig2, use_container_width=True)
+
+# # Graphique supplémentaire
+# st.subheader("Répartition des revenus par produit (Pie Chart)")
+# fig3 = px.pie(df_filtered.groupby("product_id")["revenue"].sum().reset_index(), 
+#               names="product_id", 
+#               values="revenue", 
+#               title="Répartition des revenus", 
+#               color_discrete_sequence=px.colors.sequential.Plasma)  # Palette Plasma
+# st.plotly_chart(fig3, use_container_width=True)

@@ -90,14 +90,14 @@ with st.container():
                        color_discrete_sequence=["#0A75AD"])  # Couleur de la ligne
         st.plotly_chart(fig2, use_container_width=True)
 
-# Graphique supplémentaire
-st.subheader("Répartition des revenus par produit (Pie Chart)")
-fig3 = px.pie(df_filtered.groupby("product_id")["revenue"].sum().reset_index(), 
-              names="product_id", 
-              values="revenue", 
-              title="Répartition des revenus", 
-              color_discrete_sequence=px.colors.sequential.Plasma)  # Palette Plasma
-st.plotly_chart(fig3, use_container_width=True)
+# # Graphique supplémentaire
+# st.subheader("Répartition des revenus par produit (Pie Chart)")
+# fig3 = px.pie(df_filtered.groupby("product_id")["revenue"].sum().reset_index(), 
+#               names="product_id", 
+#               values="revenue", 
+#               title="Répartition des revenus", 
+#               color_discrete_sequence=px.colors.sequential.Plasma)  # Palette Plasma
+# st.plotly_chart(fig3, use_container_width=True)
 
 st.markdown("---")
 st.header("📊 Analyses dynamiques en temps réel")
